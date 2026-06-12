@@ -4,14 +4,14 @@
 
 ## 1. Project setup (uv + package skeleton)
 
-- [ ] 1.1 Initialize a uv project at the repo root: `pyproject.toml` (name, Python version, runtime deps numpy/pandas/scipy, dev dep pytest) and generate `uv.lock`. Add a `.gitignore` for `.venv/` and caches.
-- [ ] 1.2 Create the `src/` package layout (e.g. `src/surveyentropy/__init__.py`) and a `tests/` directory; confirm `uv run python -c "import surveyentropy"` and `uv run pytest` (no tests yet) both succeed.
+- [x] 1.1 Initialize a uv project at the repo root: `pyproject.toml` (name, Python version, runtime deps numpy/pandas/scipy, dev dep pytest) and generate `uv.lock`. Add a `.gitignore` for `.venv/` and caches.
+- [x] 1.2 Create the `src/` package layout (e.g. `src/surveyentropy/__init__.py`) and a `tests/` directory; confirm `uv run python -c "import surveyentropy"` and `uv run pytest` (no tests yet) both succeed.
 
 ## 2. survey-dataset capability
 
-- [ ] 2.1 Implement item identification: classify a column as a Likert item only if all non-missing values are integers in a single contiguous range; record its scale `[lo_i, hi_i]`. Reject free-text / multi-select columns.
-- [ ] 2.2 Implement the dataset loader: read a CSV into a respondents × items numeric matrix with explicit missing values (no coercion to zero), excluding non-item metadata columns and rejected columns; hold out the construct criterion (`ControlItem`) and demographics (`Sex`, `Age`) as retrievable respondent metadata; expose per-item scale metadata.
-- [ ] 2.3 Tests: on `sjalvskattning_data_clean.csv`, assert `Item40` (multi-select) is excluded, the Likert items are kept with scale 1–5, respondent count is 51, and `ControlItem`/`Sex`/`Age` are retrievable as metadata but absent from the item matrix; assert a blank cell is represented as missing, not as the low scale value.
+- [x] 2.1 Implement item identification: classify a column as a Likert item only if all non-missing values are integers in a single contiguous range; record its scale `[lo_i, hi_i]`. Reject free-text / multi-select columns.
+- [x] 2.2 Implement the dataset loader: read a CSV into a respondents × items numeric matrix with explicit missing values (no coercion to zero), excluding non-item metadata columns and rejected columns; hold out the construct criterion (`ControlItem`) and demographics (`Sex`, `Age`) as retrievable respondent metadata; expose per-item scale metadata.
+- [x] 2.3 Tests: on `sjalvskattning_data_clean.csv`, assert `Item40` (multi-select) is excluded, the Likert items are kept with scale 1–5, respondent count is 51, and `ControlItem`/`Sex`/`Age` are retrievable as metadata but absent from the item matrix; assert a blank cell is represented as missing, not as the low scale value.
 
 ## 3. item-polarity capability
 
