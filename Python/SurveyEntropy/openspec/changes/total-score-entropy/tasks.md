@@ -33,7 +33,7 @@
 
 ## 6. Small-N estimator characterization (decision support)
 
-- [ ] 6.1 Synthetic study: at N≈51 and a 1–5 scale, sweep subset size `k` and compare plug-in vs Miller–Madow entropy against a known/large-sample ground truth; quantify residual bias as a function of `k`. Record results (short note + a figure or table) to inform whether Miller–Madow suffices before the search relies on it.
+- [x] 6.1 Synthetic study: at N≈51 and a 1–5 scale, sweep subset size `k` and compare plug-in vs Miller–Madow entropy against a known/large-sample ground truth; quantify residual bias as a function of `k`. Record results (short note + a figure or table) to inform whether Miller–Madow suffices before the search relies on it.
 
 ## 7. Wrap-up
 
