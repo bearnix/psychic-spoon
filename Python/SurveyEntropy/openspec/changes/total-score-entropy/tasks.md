@@ -21,9 +21,9 @@
 
 ## 4. total-score-entropy capability — distribution
 
-- [ ] 4.1 Implement per-respondent total-score computation for a subset `S` by row summation (on the sign-corrected matrix); drop respondents missing any item in `S` (listwise on the subset) and report the contributing N.
-- [ ] 4.2 Implement total-score histogram/distribution over the theoretical support `[Σ lo_i, Σ hi_i]` with a `bin_width` parameter (default 1), normalized to a probability distribution.
-- [ ] 4.3 Tests: a hand-built tiny matrix gives the expected total scores and normalized distribution; convolution of marginals is NOT used (verify on a correlated synthetic case that the result equals the empirical row-sum distribution, not the convolution); coarse `bin_width>1` still normalizes to 1.
+- [x] 4.1 Implement per-respondent total-score computation for a subset `S` by row summation (on the sign-corrected matrix); drop respondents missing any item in `S` (listwise on the subset) and report the contributing N.
+- [x] 4.2 Implement total-score histogram/distribution over the theoretical support `[Σ lo_i, Σ hi_i]` with a `bin_width` parameter (default 1), normalized to a probability distribution.
+- [x] 4.3 Tests: a hand-built tiny matrix gives the expected total scores and normalized distribution; convolution of marginals is NOT used (verify on a correlated synthetic case that the result equals the empirical row-sum distribution, not the convolution); coarse `bin_width>1` still normalizes to 1.
 
 ## 5. total-score-entropy capability — entropy & efficiency
 
