@@ -15,9 +15,9 @@
 
 ## 3. item-polarity capability
 
-- [ ] 3.1 Implement criterion-based polarity: per item, Spearman correlation with the held-out criterion over jointly-present respondents → polarity sign (+1/−1) and the correlation value; flag items below a documented threshold as borderline.
-- [ ] 3.2 Implement sign correction: reflect reverse-keyed items within scale (`x → (lo_i+hi_i)−x`), leave forward-keyed items unchanged, and keep the raw matrix and per-item polarity available.
-- [ ] 3.3 Tests: on a synthetic battery with known polarity, recover the signs; a reverse item on 1–5 maps 1↔5 and stays in range; forward items are unchanged; a near-zero-correlation item is flagged borderline; on the pilot, report each item's criterion correlation (sanity-review the patience/impatience split).
+- [x] 3.1 Implement criterion-based polarity: per item, Spearman correlation with the held-out criterion over jointly-present respondents → polarity sign (+1/−1) and the correlation value; flag items below a documented threshold as borderline.
+- [x] 3.2 Implement sign correction: reflect reverse-keyed items within scale (`x → (lo_i+hi_i)−x`), leave forward-keyed items unchanged, and keep the raw matrix and per-item polarity available.
+- [x] 3.3 Tests: on a synthetic battery with known polarity, recover the signs; a reverse item on 1–5 maps 1↔5 and stays in range; forward items are unchanged; a near-zero-correlation item is flagged borderline; on the pilot, report each item's criterion correlation (sanity-review the patience/impatience split).
 
 ## 4. total-score-entropy capability — distribution
 
