@@ -37,4 +37,4 @@
 
 ## 7. Wrap-up
 
-- [ ] 7.1 Run the full pipeline end-to-end on the pilot (load → polarity/sign-correct → total-score entropy) for a couple of example subsets; sanity-check `η`, contributing N, and bin reporting, and confirm sign-corrected sums spread more than raw sums; update `src/` notes (or a short README) with how to run via `uv run`.
+- [x] 7.1 Run the full pipeline end-to-end on the pilot (load → polarity/sign-correct → total-score entropy) for a couple of example subsets; sanity-check `η`, contributing N, and bin reporting, and confirm sign-corrected sums spread more than raw sums; update `src/` notes (or a short README) with how to run via `uv run`.
