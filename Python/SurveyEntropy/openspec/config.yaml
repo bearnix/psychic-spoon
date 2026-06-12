@@ -1,0 +1,97 @@
+schema: spec-driven
+
+# Project context (optional)
+# This is shown to AI when creating artifacts.
+context: |
+  Project: SurveyEntropy.
+
+  Goal. Investigate whether good Likert-scale surveys can be DESIGNED (not just
+  pruned) by Monte Carlo selection of a subset S of items from a candidate pool,
+  optimizing two competing objectives computed directly on pilot data:
+    1. H(S) - Shannon entropy of the empirical total-score histogram across
+       respondents. High entropy == flat distribution == "the survey uses the
+       whole scale and spreads people out".
+    2. C(S) - internal consistency, the mean (or min) item-rest Spearman
+       correlation of each included item against the sum of the rest of S.
+  These objectives are in genuine TENSION: strong consistency makes total scores
+  peaked (central-limit-ish), which lowers entropy. The trade-off IS the design.
+  Expose it as a tunable weight lambda and report a Pareto front, not a single
+  "best" subset. Free-energy analogy: F(S) = -H(S) + lambda*(1 - C(S)), with
+  lambda playing the role of inverse temperature in a Metropolis search.
+
+  What is novel here. The framing is UNSUPERVISED - flatness + consistency, no
+  group labels. The published information-theoretic item-selection literature
+  (Brockett 1981 -> Golden 1990 -> Orsoni 2025) is all SUPERVISED (known groups
+  drive KL/JS-divergence item ranking). The MC search, JSD machinery, and
+  Bayesian-network item-structure tools are reusable from that literature; the
+  unsupervised objective is the genuinely new piece.
+
+  Relationship to IRT. This is a CTT-flavored cousin of IRT optimal test design
+  (a flat, high Test Information Function), arrived at from first principles
+  without committing to a parametric latent-trait model. Keep IRT as an optional
+  Phase 2 comparison (fit a Graded Response Model, check whether MC-selected
+  items are high-discrimination with thresholds spread across theta), not a
+  dependency.
+
+  Known modeling traps (respect these in any proposal):
+    - Do NOT convolve marginal item histograms to get total-score distributions.
+      That assumes item independence, which contradicts the consistency
+      objective. Always sum per-respondent and histogram the result.
+    - Item-rest correlation is a moving target: every change to S redefines every
+      item's rest-score. MC over subsets handles this cleanly; greedy
+      forward/backward selection is biased by selection order.
+    - H(S) is population-dependent (it lives on the pilot population). A subset
+      that looks flat here may not generalize. Keep a hold-out / cross-validation
+      story in mind as a limitation of the empirical phase.
+
+  Scope. Single construct is the working ("toy") scope. Multi-subscale /
+  multi-construct surveys, and adaptive/online (CAT-style) selection, are OUT OF
+  SCOPE until explicitly reopened.
+
+  Tech stack. Python. numpy, pandas, scipy (scipy.stats: spearmanr, pearsonr,
+  chi2), scikit-learn, matplotlib, seaborn. Exploratory work currently lives in
+  Jupyter notebooks (DevelTest.ipynb, Psy2-5_*.ipynb); src/ holds Markdown
+  design/framing notes. Pilot data: sjalvskattning_data_clean.csv (+ _keys),
+  Swedish self-assessment data used in a course; prestation_data_clean.csv is a
+  second dataset.
+
+  Audience and explanation style. The author has a molecular-simulations /
+  computational-physics background and reasons fluently in Monte Carlo, entropy,
+  degrees of freedom, and statistical mechanics - stat-mech analogies are
+  welcome and productive. The author is newer to psychometrics and is currently
+  in a psychology program, actively learning the field. So: when an artifact
+  touches a psychometrics concept (CTT, IRT, Graded Response Model, Fisher /
+  Test Information, discrimination, reliability, validity), briefly explain it
+  AND give the physics-side analogy, and prefer linking to the prior-art survey
+  in src/01_Framing_IRT_and_Critique.md (sections 9-11) over re-deriving it.
+  Treat artifacts as partly pedagogical, not only as engineering specs.
+
+# Per-artifact rules (optional)
+rules:
+  proposal:
+    - State which objective(s) the change touches - H(S), C(S), the lambda
+      trade-off, the MC search, or evaluation/validation - and keep the
+      H-vs-C tension explicit rather than papering over it.
+    - Include a short "Non-goals" section; default non-goals are multi-subscale
+      designs and adaptive/online selection unless the change explicitly opens
+      them.
+    - When introducing a psychometrics term, add a one-line plain definition and
+      a physics analogy for the author.
+  design:
+    - Flag any independence or distributional assumption explicitly (especially
+      anything resembling histogram convolution of marginal items).
+    - Note population-dependence and a cross-validation/hold-out plan whenever a
+      result is claimed about generalization.
+  tasks:
+    - Break work into chunks of at most ~2 hours.
+    - Separate "compute the objective" tasks from "search over subsets" tasks so
+      the objective function can be swapped (empirical/CTT now, IRT later)
+      without touching the Metropolis machinery.
+    - "Definition of Done for every task - code plus a check that actually
+      exercises it both pass, the author confirms the result is settled, THEN
+      commit and push to origin (github.com:bearnix/psychic-spoon). Do not
+      batch multiple tasks into one commit."
+    - "Environment is managed with uv (pyproject.toml + uv.lock); fresh code
+      goes in a src/ Python package, run via `uv run`. No global pip installs,
+      no Jupyter notebooks for production code (the existing notebooks are
+      superseded scratch work)."
