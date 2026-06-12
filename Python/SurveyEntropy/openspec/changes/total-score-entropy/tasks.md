@@ -27,9 +27,9 @@
 
 ## 5. total-score-entropy capability — entropy & efficiency
 
-- [ ] 5.1 Define an `EntropyEstimator` interface; implement plug-in and Miller–Madow estimators; make Miller–Madow the default.
-- [ ] 5.2 Implement entropy `H(S)` and efficiency `η(S) = H(S)/H_max ∈ [0,1]` on the total-score distribution; return `H`, `H_max`, `η`, contributing N, and occupied-bin count together (never `η` alone).
-- [ ] 5.3 Tests: uniform-over-`m`-bins gives `H ≈ ln m` and `η ≈ 1` within tolerance; a single-spike distribution gives `η = 0`; supplying a custom estimator through the interface is used without other code changes.
+- [x] 5.1 Define an `EntropyEstimator` interface; implement plug-in and Miller–Madow estimators; make Miller–Madow the default.
+- [x] 5.2 Implement entropy `H(S)` and efficiency `η(S) = H(S)/H_max ∈ [0,1]` on the total-score distribution; return `H`, `H_max`, `η`, contributing N, and occupied-bin count together (never `η` alone).
+- [x] 5.3 Tests: uniform-over-`m`-bins gives `H ≈ ln m` and `η ≈ 1` within tolerance; a single-spike distribution gives `η = 0`; supplying a custom estimator through the interface is used without other code changes.
 
 ## 6. Small-N estimator characterization (decision support)
 
